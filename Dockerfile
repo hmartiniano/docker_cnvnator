@@ -20,7 +20,7 @@ RUN apt update && apt install -y --no-install-recommends \
   python-tk \
   curl \
   bzip2 \
-  unzip \
+  git \
  && rm -rf /var/lib/apt/lists/*
 
 RUN curl https://root.cern/download/root_v6.18.04.Linux-ubuntu16-x86_64-gcc5.4.tar.gz | \
@@ -41,9 +41,8 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/1.9/samtools-
 
 
 RUN cd /tmp \
- && curl https://github.com/abyzovlab/CNVnator/releases/download/v0.4.1/CNVnator_v0.4.1.zip \
- && unzip CNVnator_v0.4.1.zip \
- && cd /tmp/CNVnator_v0.4.1 \
+ && git clone https://github.com/abyzovlab/CNVnator.git \
+ && cd /tmp/CNVnator \
  && ln -s /tmp/samtools-* samtools \
  && ROOTSYS=/opt/root make \
  && mv cnvnator *.py *.pl /usr/local/bin \
