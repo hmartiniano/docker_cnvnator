@@ -20,6 +20,7 @@ RUN apt update && apt install -y --no-install-recommends \
   python-tk \
   curl \
   bzip2 \
+  unzip \
  && rm -rf /var/lib/apt/lists/*
 
 RUN curl https://root.cern/download/root_v6.18.04.Linux-ubuntu16-x86_64-gcc5.4.tar.gz | \
