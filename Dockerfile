@@ -38,9 +38,11 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/1.9/samtools-
  && make mostlyclean \
  && find /tmp -name test -type d -exec rm -rf {} +
 
-COPY ./ /tmp/CNVnator
 
-RUN cd /tmp/CNVnator \
+RUN cd /tmp \
+ && curl https://github.com/abyzovlab/CNVnator/releases/download/v0.4.1/CNVnator_v0.4.1.zip \
+ && unzip CNVnator_v0.4.1.zip \
+ && cd /tmp/CNVnator_v0.4.1 \
  && ln -s /tmp/samtools-* samtools \
  && ROOTSYS=/opt/root make \
  && mv cnvnator *.py *.pl /usr/local/bin \
